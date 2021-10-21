@@ -13,4 +13,4 @@ app.use(cors());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-export default app;
+export default app.callback();
