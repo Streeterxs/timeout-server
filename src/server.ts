@@ -1,11 +1,12 @@
 import { createServer } from "http";
 
 import app from "./api/app";
+import { PORT } from "./config";
 
 (async () => {
     const server = createServer(app);
 
-    server.listen('3233', () => {
-        console.log('server is on');
+    server.listen(PORT, () => {
+        console.log(`server is on port ${PORT}` );
     });
 })();
