@@ -1,12 +1,16 @@
 import Koa from 'koa';
 import cors from 'kcors';
+import fs from 'fs';
 
 import router from './routes';
+import { root } from '../config';
 
 const app = new Koa();
 
 router.get('/', (ctx, next) => {
-  console.log('router');
+  var file = fs.readFileSync(root('README.md'), 'utf8');
+
+  ctx.body = file.toString();
 });
 
 app.use(cors());
