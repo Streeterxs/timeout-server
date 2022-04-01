@@ -17,7 +17,7 @@ router.get('/timeout/:ms', async (context, next) => {
 
    try {
       await timeoutPromise;
-      context.body = 'timeouted';
+      context.body = `timeouted after ${ms} ms`;
       context.status = 200;
       await next();
    } catch (err) {
