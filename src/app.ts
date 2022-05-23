@@ -3,7 +3,7 @@ import cors from 'kcors';
 import fs from 'fs';
 
 import router from './routes';
-import { root } from '../config';
+import { root } from './config';
 
 const app = new Koa();
 

@@ -7,7 +7,7 @@ import replace from '@rollup/plugin-replace';
 
 import pkg from './package.json';
 
-const input = './src/server.ts';
+const input = './src/api/index.ts';
 
 const external = (id) => {
    return id.startsWith('.') === false && path.isAbsolute(id) === false;
