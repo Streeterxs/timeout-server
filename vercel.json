@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/timeout.ts": {
+    "src/api/timeout.ts": {
       "memory": 1024,
       "maxDuration": 5
     }
