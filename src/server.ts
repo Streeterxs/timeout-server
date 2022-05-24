@@ -1,6 +1,6 @@
 import { createServer } from "http";
 
-import app from "./api/app";
+import app from "./app";
 import { PORT } from "./config";
 
 (async () => {
