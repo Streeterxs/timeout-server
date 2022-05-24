@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-export default async function handler(request, response) {
+export default async function handler(request: VercelRequest, response: VercelResponse) {
   const res = await fetch('https://...', {
     method: 'POST',
     body: JSON.stringify({
