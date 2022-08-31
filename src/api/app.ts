@@ -7,8 +7,8 @@ import { root } from '../config';
 
 const app = new Koa();
 
+const file = fs.readFileSync(root('README.md'), 'utf8');
 router.get('/', (ctx, next) => {
-  var file = fs.readFileSync(root('README.md'), 'utf8');
 
   ctx.body = file.toString();
 });
