@@ -2,36 +2,37 @@
   "name": "timeout-server",
   "version": "0.0.1",
   "description": "A backend server to help test timeouts",
-  "main": "build/server.cjs.js",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@rollup/plugin-typescript": "^8.2.5",
-    "@types/kcors": "^2.2.5",
-    "@types/koa": "^2.13.4",
-    "@types/koa-router": "^7.4.4",
-    "esbuild": "^0.13.8",
-    "esbuild-register": "^3.0.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^2.56.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "typescript": "4.2.3"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "es": "node -r esbuild-register",
-    "start": "yarn es ./src/server.ts",
-    "clear": "rimraf ./build",
-    "build": "yarn clear && yarn rollup --config && tsc --emitDeclarationOnly"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "clear": "rimraf ./build"
   },
   "author": "Afonso Araújo Neto",
   "license": "ISC",
+  "engines": {
+    "node": "16"
+  },
   "dependencies": {
-    "dotenv-safe": "^8.2.0",
-    "kcors": "^2.2.2",
-    "koa": "^2.13.4",
-    "koa-router": "^10.1.1"
+    "next": "13.3.2",
+    "raw-loader": "^4.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.7",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/kcors": "2.2.5",
+    "@types/koa": "2.13.4",
+    "@types/koa-router": "7.4.4",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "@vercel/node": "^2.14.0",
+    "esbuild": "0.13.8",
+    "esbuild-register": "3.0.0",
+    "rimraf": "3.0.0"
   }
 }

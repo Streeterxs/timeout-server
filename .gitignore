@@ -3,3 +3,5 @@ build
 .vercel
 yarn-error.log
 .env
+.next
+next-env.d.ts
