@@ -8,8 +8,8 @@ In production we deal with a lot of third parties apis, some of then are very ve
 ### Usage
 **local**
 - clone this project
-- yarn install
-- yarn dev
+- npm install
+- npm run dev
 
 ### Routes
 - "/" => base route, returns this tutorial
