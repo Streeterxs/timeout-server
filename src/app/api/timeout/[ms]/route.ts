@@ -2,8 +2,11 @@ import { timeout } from './_timeout';
 
 export const dynamic = 'force-dynamic'; // static by default, unless reading the request
 
-export async function GET(request: Request, {params}: {params: {ms: number}}) {
-  const response = new Response();
+export type msGetHandler = (request: Request, options: {params: {ms: number}}) => Promise<Response>;
+
+export const GET: msGetHandler = async function(request, options) {
+
+  const { params } = options;
   const {ms: msString} = params;
 
   const ms = Number(msString);
@@ -16,4 +19,4 @@ export async function GET(request: Request, {params}: {params: {ms: number}}) {
   await timeout(ms);
   
   return Response.json({success: `Timeouted ${ms}ms`, error: null}, {status: 200});
-}
+};
