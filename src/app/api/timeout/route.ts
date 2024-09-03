@@ -1,5 +1,4 @@
-//@ts-ignore
-import Readme from '@/../../README.md';
+import Readme from '../../../../README.md';
 
 export const dynamic = 'force-dynamic'; // static by default, unless reading the request
  
