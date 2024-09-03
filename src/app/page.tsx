@@ -4,8 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 import styles from '@/styles/Home.module.css';
 
-//@ts-ignore
-import Readme from '@/../README.md';
+import Readme from '../../README.md';
 
 export default function Home() {
   return (
