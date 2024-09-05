@@ -21,6 +21,6 @@ it("Should successfully timeout for 300ms", async () => {
   // https://stackoverflow.com/questions/51126786/jest-fake-timers-with-promises
   await timeoutPromise
 
-  expect(setTimeout).toHaveBeenCalledTimes(3);
-  expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 500);
+  expect(setTimeout).toHaveBeenCalledTimes(1);
+  expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 300);
 });
