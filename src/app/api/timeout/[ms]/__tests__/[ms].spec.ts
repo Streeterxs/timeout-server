@@ -75,7 +75,7 @@ it("Should call timeout function with 300 arg", async () => {
         success: `Timeouted ${ms}ms`
       });
       expect(timeout).toHaveBeenCalledTimes(1);
-      expect(timeout).toHaveBeenCalledWith(300)
+      expect(timeout).toHaveBeenCalledWith(300);
     },
   });
 });
