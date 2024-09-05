@@ -1,10 +1,9 @@
-export const timeout = async (ms: number = 100) => {
+export const timeout = async (ms: number = 0) => {
 
   const timeoutPromise = new Promise((resolve, reject) => {
 
     setTimeout(async () => {
       resolve('timeouted');
-      console.log({ms})
     }, ms);
   });
 
