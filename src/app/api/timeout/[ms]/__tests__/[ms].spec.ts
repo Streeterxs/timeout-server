@@ -2,6 +2,9 @@
  * @jest-environment node
  */
 
+// to test this
+// npm run test src/app/api/timeout/\\[ms\\]/__tests__
+
 import { testApiHandler } from "next-test-api-route-handler";
 
 import * as timeoutRouteHandler from "../route";
