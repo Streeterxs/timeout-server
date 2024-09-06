@@ -3,7 +3,77 @@
  * https://jestjs.io/docs/configuration
  */
 
+import nextJest from 'next/jest.js';
 import type {Config} from 'jest';
+ 
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+
+
+const esModules = [
+  "react-markdown",
+  "devlop",
+  "hast-util-to-jsx-runtime",
+  "comma-separated-tokens",
+  "estree-util-is-identifier-name",
+  "hast-util-whitespace",
+  "property-information",
+  "space-separated-tokens",
+  "unist-util-position",
+  "vfile-message",
+  "unist-util-stringify-position",
+  "html-url-attributes",
+  "remark-parse",
+  "mdast-util-from-markdown",
+  "mdast-util-to-string",
+  "micromark",
+  "decode-named-character-reference",
+  "remark-rehype",
+  "mdast-util-to-hast",
+  "trim-lines",
+  "unist-util-visit",
+  "unist-util-is",
+  "unified",
+  "bail",
+  "is-plain-obj",
+  "trough",
+  "vfile"
+].join('|');
+
+const compilerOptions = {
+  lib: [ 'lib.dom.d.ts', 'lib.dom.iterable.d.ts', 'lib.esnext.d.ts' ],
+  allowJs: true,
+  skipLibCheck: true,
+  strict: true,
+  noEmit: true,
+  esModuleInterop: true,
+  module: 99,
+  moduleResolution: 100,
+  resolveJsonModule: true,
+  isolatedModules: true,
+  jsx: 1,
+  incremental: true,
+  plugins: [ { name: 'next' } ],
+  paths: { '@/*': [ './src/*' ] },
+  pathsBasePath: '/home/afonso/Projects/timeout-server',
+  configFilePath: undefined
+};
+
+const jestTransformerConfig = {
+  // modularizeImports: { '@mui/icons-material': [Object], lodash: [Object] },
+  swcPlugins: undefined,
+  compilerOptions: undefined,
+  jsConfig: { compilerOptions },
+  resolvedBaseUrl: {
+    baseUrl: '/home/afonso/Projects/timeout-server',
+    isImplicit: true
+  },
+  serverComponents: true,
+  isEsmProject: false,
+  pagesDir: undefined
+};
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -177,13 +247,18 @@ const config: Config = {
   // A map from regular expressions to paths to transformers
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
+    "^.+.md?$": ["<rootDir>/config/jestMdTransformer",{}],
+    // avoid using babel in a nextjs environment
+    [`(${esModules}).+\\.js$`]: [
+      require.resolve("next/dist/build/swc/jest-transformer"),
+      jestTransformerConfig
+  ],
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  transformIgnorePatterns: [
+    `[/\\\\]node_modules[/\\\\](?!${esModules}).+\\.(js)$`,
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
@@ -198,4 +273,17 @@ const config: Config = {
   // watchman: true,
 };
 
-export default config;
+const getJestConfigAll = async () => {
+  const getNextConfig = createJestConfig(config);
+  const nextJestConfig = await getNextConfig();
+
+  const nextJestConfigAll = {
+    ...nextJestConfig,
+    transformIgnorePatterns: [
+      `[/\\\\]node_modules[/\\\\](?!${esModules}).+\\.(js)$`,
+    ]
+  };
+
+  return nextJestConfigAll;
+}
+export default getJestConfigAll;

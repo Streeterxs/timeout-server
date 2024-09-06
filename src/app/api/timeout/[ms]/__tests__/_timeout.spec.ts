@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 // to test this
 // npm run test src/app/api/timeout/\\[ms\\]/__tests__
 
