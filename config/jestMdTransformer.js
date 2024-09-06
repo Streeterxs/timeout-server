@@ -6,7 +6,7 @@ const process = (src, filepath, config) => {
     .replace('"', '');
   
   return {
-    code: `module.exports = ${mdToJson}`
+    code: `module.exports = '${mdToJson}'`
   };
 };
 
