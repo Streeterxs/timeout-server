@@ -3,10 +3,15 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
+  workflow_run:
+    workflows: ["Dependabot PR Check"]
+    types: 
+      - completed
   push:
     branches-ignore:
       - main
       - feat/production
+      - dependabot/*
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
